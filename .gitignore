@@ -1,0 +1,27 @@
+# React + Vite
+node_modules/
+dist/
+vite.svg
+*.tsbuildinfo
+coverage/
+
+# Go
+bin/
+*.exe
+*.test
+*.out
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# VS Code
+.vscode/
+.vscode-test/
+
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
