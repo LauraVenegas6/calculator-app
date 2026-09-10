@@ -1,26 +1,18 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
+
+	"calculator/backend/handlers"
 )
 
-func healthHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-
-	json.NewEncoder(w).Encode(map[string]string{
-		"status": "ok",
-	})
-}
-
 func main() {
-	http.HandleFunc("/health", healthHandler)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/api/calculate", handlers.CalculatorHandler)
 
-	log.Println("Server running on http://localhost:8080")
-
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	log.Println("server starting on :8080")
+	if err := http.ListenAndServe(":8080", mux); err != nil {
 		log.Fatal(err)
 	}
 }
