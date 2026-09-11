@@ -1,26 +1,39 @@
+// main.go
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
+
+	"calculator/backend/handlers"
 )
 
-func healthHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+func main() {
+	mux := http.NewServeMux()
 
-	json.NewEncoder(w).Encode(map[string]string{
-		"status": "ok",
-	})
+	// API routes
+	mux.HandleFunc("/api/calculate", withCORS(handlers.CalculatorHandler))
+
+	// Serve the built frontend (Vite's dist/) for everything else.
+	// ServeMux matches the most specific pattern first, so "/api/calculate"
+	// above always takes priority over this catch-all.
+	mux.Handle("/", http.FileServer(http.Dir("./static")))
+
+	log.Println("server starting on :8080")
+	if err := http.ListenAndServe(":8080", mux); err != nil {
+		log.Fatal(err)
+	}
 }
 
-func main() {
-	http.HandleFunc("/health", healthHandler)
-
-	log.Println("Server running on http://localhost:8080")
-
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal(err)
+func withCORS(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+		next(w, r)
 	}
 }
