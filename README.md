@@ -70,46 +70,46 @@ The application follows a simple layered flow:
 - **`model`** — defines the request/response/error data structures (`CalculationRequest`, `CalculationResponse`, `ErrorResponse`, `Operation`). Contains no behavior beyond basic data definitions.
 
 ## 5. Project Structure
-calculator-app/
-├── Dockerfile
-├── .dockerignore
-├── .gitignore
-├── backend/
-│ ├── go.mod
-│ ├── main.go
-│ ├── model/
-│ │ └── calculator.go
-│ ├── services/
-│ │ ├── calculator.go
-│ │ └── calculator_test.go
-│ └── handlers/
-│ ├── calculator.go
-│ └── calculator_test.go
-└── frontend/
-├── package.json
-├── package-lock.json
-├── vite.config.ts
-├── vitest.config.ts
-├── tsconfig.json
-├── tsconfig.app.json
-└── src/
-├── App.tsx
-├── App.css
-├── types/
-│ └── calculator.ts
-├── api/
-│ └── calculatorApi.ts
-├── hooks/
-│ ├── useCalculatorKeypad.ts
-│ └── useCalculatorKeypad.test.ts
-├── components/
-│ ├── Calculator.tsx
-│ ├── Calculator.test.tsx
-│ ├── Display.tsx
-│ ├── Keypad.tsx
-│ └── ErrorMessage.tsx
-└── test/
-└── setup.ts  
+calculator-app/  
+├── Dockerfile  
+├── .dockerignore  
+├── .gitignore  
+├── backend/  
+│ ├── go.mod  
+│ ├── main.go  
+│ ├── model/  
+│ │ └── calculator.go  
+│ ├── services/  
+│ │ ├── calculator.go  
+│ │ └── calculator_test.go  
+│ └── handlers/  
+│ ├── calculator.go  
+│ └── calculator_test.go  
+└── frontend/  
+├── package.json  
+├── package-lock.json  
+├── vite.config.ts  
+├── vitest.config.ts  
+├── tsconfig.json  
+├── tsconfig.app.json  
+└── src/  
+├── App.tsx  
+├── App.css  
+├── types/  
+│ └── calculator.ts  
+├── api/  
+│ └── calculatorApi.ts  
+├── hooks/  
+│ ├── useCalculatorKeypad.ts  
+│ └── useCalculatorKeypad.test.ts  
+├── components/  
+│ ├── Calculator.tsx  
+│ ├── Calculator.test.tsx  
+│ ├── Display.tsx  
+│ ├── Keypad.tsx  
+│ └── ErrorMessage.tsx  
+└── test/  
+└── setup.ts    
 
 **Notable files:**
 - `backend/main.go` — wires the HTTP routes and, in the Docker image, serves the built frontend as static files alongside the API.
