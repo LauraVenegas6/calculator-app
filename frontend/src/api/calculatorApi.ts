@@ -1,6 +1,6 @@
 import type { CalculationRequest, CalculationResponse, ErrorResponse } from "../types/calculator";
 
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = "/api";
 
 export class CalculatorApiError extends Error {}
 
