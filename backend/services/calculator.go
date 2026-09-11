@@ -11,9 +11,9 @@ import (
 // handlers, can identify them with errors.Is() and map them to specific
 // HTTP status codes without coupling to text messages.
 var (
-	ErrDivisionByZero   = errors.New("division by zero")
-	ErrNegativeSqrt     = errors.New("square root of negative number")
-	ErrUnknownOperation = errors.New("unknown operation")
+	ErrDivisionByZero   = errors.New("cannot divide by zero")
+	ErrNegativeSqrt     = errors.New("cannot calculate square root of a negative number")
+	ErrUnknownOperation = errors.New("unsupported calculator operation")
 	ErrMissingOperand   = errors.New("operand b is required for this operation")
 )
 
